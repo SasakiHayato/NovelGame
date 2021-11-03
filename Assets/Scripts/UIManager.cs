@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 using DataBase.Charactors;
 using DataBase.BackGrounds;
+using SimpleFade;
 
 public class UIManager : MonoBehaviour
 {
