@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f14949d9bc04d4a8e856bdd01d163f, type: 3}
+  m_Name: TextData
+  m_EditorClassIdentifier: 
+  m_prologue:
+  - m_charaId: 0
+    m_msg: "\u30D0\u30D6\u30FC\u2015\u2015\u2015\u2015"
+    m_isEvent: 0
+    m_pos: 
+    m_selector: 
+    m_backGroundId: 0
+  - m_charaId: 1
+    m_msg: "\u30A2\u30D8\u30A2\u3078"
+    m_isEvent: 0
+    m_pos: 
+    m_selector: 
+    m_backGroundId: 0
+  - m_charaId: 0
+    m_msg: "\u308F\u3044\u308F\u3044\u308F\u3044\u308F\u3044\u308F\u3044\u308F\u3044\u308F\u3044"
+    m_isEvent: 0
+    m_pos: 
+    m_selector: 
+    m_backGroundId: 0
+  - m_charaId: 2
+    m_msg: "\u3046\u3043\u3046\u3043\u3046\u3043\u3046\u3043\u3046\u3043\u3046\u3043\u3046\u3043"
+    m_isEvent: 0
+    m_pos: 
+    m_selector: 
+    m_backGroundId: 0
+  - m_charaId: 1
+    m_msg: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    m_isEvent: 1
+    m_pos: 
+    m_selector: 
+    m_backGroundId: 0
+  - m_charaId: 2
+    m_msg: "\u308F\u306F\u306F\u306F\u306F\u306F\u306F\u306F\u306F\u306F\u306F\u306F\u306F"
+    m_isEvent: 0
+    m_pos: 
+    m_selector: 
+    m_backGroundId: 0
+  - m_charaId: 1
+    m_msg: "\u3042\u3048\u3042\u3048\u3042\u3048\u3042\u3048\u3042\u3048\u3042\u3048\u3042\u3048"
+    m_isEvent: 0
+    m_pos: 
+    m_selector: 
+    m_backGroundId: 0
+  - m_charaId: 0
+    m_msg: "\u304A\u304E\u3083\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC"
+    m_isEvent: 0
+    m_pos: 
+    m_selector: 
+    m_backGroundId: 0
+  - m_charaId: -1
+    m_msg: None
+    m_isEvent: 0
+    m_pos: 
+    m_selector: 
+    m_backGroundId: 0
+  m_ending:
+  - m_charaId: 1
+    m_msg: Ending
+    m_isEvent: 0
+    m_pos: 
+    m_selector: 
+    m_backGroundId: 0
+  - m_charaId: 2
+    m_msg: Ending2
+    m_isEvent: 0
+    m_pos: 
+    m_selector: 
+    m_backGroundId: 0
+  m_test:
+  - m_charaId: 0,1,2
+    m_msg: TestText
+    m_isEvent: 0
+    m_pos: 2,3,1
+    m_selector: 1,0
+    m_backGroundId: 0
