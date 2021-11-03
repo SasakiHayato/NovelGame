@@ -44,8 +44,8 @@ public class GameSceneManegement : MonoBehaviour
         {
             GameManager.Instnace().IsBreak = true;
             m_break = GameManager.Instnace().IsBreak;
+            SimpleFade.Fade.FadeBreak();
         }
-
     }
 
     void SetText(IData set)

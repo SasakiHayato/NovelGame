@@ -21,11 +21,9 @@ public class UIManager : MonoBehaviour
 
     List<Image> m_charaList = new List<Image>();
     List<Image> m_imageList = new List<Image>();
-    FadeManager m_fade;
 
     void Start()
     {
-        m_fade = FindObjectOfType<FadeManager>();
         //Charaのアルファ値
         foreach (Image set in m_charaPoses)
             set.color = new Color(set.color.r, set.color.g, set.color.b, 0);
@@ -55,7 +53,7 @@ public class UIManager : MonoBehaviour
         }
 
         if (charaSync) Fade.InMultipe(m_imageList, m_fadeSpeed);
-        else Fade.InMultipeAsync<Image>(m_charaList, m_fadeSpeed);
+        else Fade.InMultipeAsync(m_charaList, m_fadeSpeed);
     }
 
     void SetBackImage(int id)

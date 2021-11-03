@@ -28,7 +28,7 @@ namespace SimpleFade
             }
         }
 
-        #region ƒƒ“ƒo•Ï”
+        #region Member variables
         float _startVal = 0;
         float _endVal = 0;
         float _fadeSpeed = 0;
@@ -181,7 +181,7 @@ namespace SimpleFade
 
         public static void FadeBreak() => Instance._break = true;
 
-        #region ˆ—
+        #region process
         void FadeInForImage(Image target = null, float speed = 0)
         {
             SetFadeInParam(speed);
