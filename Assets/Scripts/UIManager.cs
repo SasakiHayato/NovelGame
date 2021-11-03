@@ -53,11 +53,8 @@ public class UIManager : MonoBehaviour
             m_imageList.Add(set);
         }
 
-        //if (charaSync) m_fade.SyncFadeIn(m_imageList, m_fadeSpeed);
-        //else m_fade.AsyncFadeIn(m_imageList, m_charaList, m_fadeSpeed);
-
         if (charaSync) Fade.InMultipe(m_imageList, m_fadeSpeed);
-        else Fade.InMultipeAsync(m_charaList, m_fadeSpeed);
+        else Fade.InMultipeAsync<Image>(m_charaList, m_fadeSpeed);
     }
 
     void SetBackImage(int id)
