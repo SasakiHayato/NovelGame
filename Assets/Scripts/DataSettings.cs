@@ -11,10 +11,13 @@ public class DataSettings : MonoBehaviour
     SpriteRenderer _sprite2;
 
     int _id = 0;
-    bool _isMove = false;
+
+    public bool IsMove { get; set; } = false;
 
     public void Init()
     {
+        IsMove = false;
+
         UIManager.SetName("");
         UIManager.SetMSG("Init");
 
@@ -26,8 +29,8 @@ public class DataSettings : MonoBehaviour
 
     public void SetDatas()
     {
-        if (_isMove) Break();
-        else _isMove = true;
+        if (IsMove) Break();
+        else IsMove = true;
 
         Data data = _excel.Test[_id];
         string name = "Null";
@@ -37,26 +40,15 @@ public class DataSettings : MonoBehaviour
             {
                 name = chara.Name;
                 _sprite1.sprite = chara.FaceID[0];
+                
                 break;
             }
         }
         
         UIManager.SetName(name);
         UIManager.SetMSG(data.MSG);
-
-        StartCoroutine(UIManager.IsMove());
-        StartCoroutine(IsMove());
     }
-
-    IEnumerator IsMove()
-    {
-        yield return new WaitUntil(() => UIManager.IsEndUI());
-        Debug.Log("IsSetting UIData");
-        yield return new WaitUntil(() => Input.GetButtonDown("Fire1"));
-        Debug.Log("IsPressed. GetNextData");
-        _isMove = false;
-    }
-
+    
     void Break()
     {
         

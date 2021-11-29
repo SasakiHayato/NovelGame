@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Test:
   - ID: 1
-    MSG: Hello Warld.
+    MSG: "\u3042\u3042\u3042<color=#0073FF>\u3044\u3044\u3044</color>\u3046\u3046\u3046\u3048\u3048\u3048<color=#0073FF>\u304A\u304A\u304A</color>\u304B\u304B\u304B"
     CharaID: 2
   - ID: 2
     MSG: New Text
