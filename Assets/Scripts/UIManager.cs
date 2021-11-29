@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] float _txtWaitTime = 0.5f;
+
     private static UIManager _instance = null;
     public static UIManager Instance => _instance;
 
@@ -12,6 +14,8 @@ public class UIManager : MonoBehaviour
 
     Text _msgTxt;
     Text _nameTxt;
+
+    bool _isEnd;
 
     private void Awake()
     {
@@ -21,8 +25,16 @@ public class UIManager : MonoBehaviour
         _nameTxt = GameObject.Find("Name").GetComponent<Text>();
         
         _txt = gameObject.AddComponent<TextCtrl>();
+        _txt.WaitTime = _txtWaitTime;
+    }
+
+    public static IEnumerator IsMove()
+    {
+        yield return null;
     }
 
     public static void SetName(string name) => Instance._nameTxt.text = name;
     public static void SetMSG(string msg) => Instance._txt.Set(msg, Instance._msgTxt);
+
+    public static bool IsEndUI() => Instance._isEnd;
 }

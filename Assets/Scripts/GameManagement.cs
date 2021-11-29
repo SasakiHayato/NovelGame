@@ -16,9 +16,6 @@ public class GameManagement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            _settings.SetDatas();
-        }
+        if (Input.GetButtonDown("Fire1")) _settings.SetDatas();
     }
 }

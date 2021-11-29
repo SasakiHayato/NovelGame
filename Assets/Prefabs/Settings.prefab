@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7e883a62f700a42b84e82482f4a068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _excel: {fileID: 11400000, guid: f9e5f6d54f4bbd44e985ba4f170a33ed, type: 2}
+  _chara: {fileID: 11400000, guid: 15c70574d6960b24d90ad80d99b47a8b, type: 2}
