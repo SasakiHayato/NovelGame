@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharaData:
   - Name: "\u306D\u3053"
-    ID: 01
+    ID: 10
     FaceID:
     - {fileID: 21300000, guid: 88fbf0a57306df546916a84c18f8f1f2, type: 3}
     - {fileID: 21300000, guid: 8b15b034a389b694eb2bfbf36c96818b, type: 3}
@@ -27,7 +27,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: fd1d21fbae43e79448d3cee310a98d08, type: 3}
     - {fileID: 21300000, guid: 8462c49866bd2a44a95357125f3bd9fc, type: 3}
   - Name: "\u5973\u306E\u5B50"
-    ID: 02
+    ID: 11
     FaceID:
     - {fileID: 21300000, guid: a228484e723973040b7a8aa3f53f34a0, type: 3}
     - {fileID: 21300000, guid: 2c8dc536023bc6f4b99c3de3ede19e4e, type: 3}

@@ -10,17 +10,32 @@ public class TextCtrl : MonoBehaviour
 
     int _setId = 0;
     int _insertCount = 0;
+    int _setInsert = 0;
     float _currentTime = 0;
     string[] _saveColor;
 
     Text _setTxt;
+    string _saveMSG;
     bool _colorSetUp;
+
+    Coroutine _setCorutine;
+
+    public void Break()
+    {
+        StopCoroutine(_setCorutine);
+        _saveColor = new string[3];
+        IsEnd = false;
+        _setInsert = 0;
+        _insertCount = 0;
+        _setTxt.text = "";
+        _setTxt.text = _saveMSG;
+    }
 
     public void Set(string msg, Text text)
     {
         _saveColor = new string[3];
         IsEnd = false;
-
+        _saveMSG = msg;
         if (msg == "Init")
         {
             text.text = "";
@@ -28,7 +43,7 @@ public class TextCtrl : MonoBehaviour
             return;
         }
         
-        StartCoroutine(TextUpdate(msg));
+        _setCorutine = StartCoroutine(TextUpdate(msg));
     }
 
     IEnumerator TextUpdate(string msg)
@@ -36,7 +51,7 @@ public class TextCtrl : MonoBehaviour
         _setTxt.text = "";
         string check = "<";
         _colorSetUp = false;
-        int insertCount = 0;
+        _setInsert = 0;
 
         for (int count = 0; count < msg.Length; count++)
         {
@@ -55,17 +70,17 @@ public class TextCtrl : MonoBehaviour
             else
             {
                 count--;
-                if (insertCount == _insertCount)
+                if (_setInsert == _insertCount)
                 {
                     _saveColor = new string[3];
-                    insertCount = 0;
+                    _setInsert = 0;
                     _insertCount = 0;
                     continue;
                 }
-
-                string insert = _saveColor[1][insertCount].ToString();
+                
+                string insert = _saveColor[1][_setInsert].ToString();
                 _setTxt.text = _setTxt.text.Insert(_setTxt.text.LastIndexOf(_saveColor[2]), insert);
-                insertCount++;
+                _setInsert++;
             }
             
             

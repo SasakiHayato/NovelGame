@@ -2,55 +2,74 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using SimpleFade;
+
 public class DataSettings : MonoBehaviour
 {
     [SerializeField] ExcelData _excel;
     [SerializeField] CharaDataBase _chara;
 
-    SpriteRenderer _sprite1;
-    SpriteRenderer _sprite2;
-
     int _id = 0;
+
+    Dictionary<string, string> _charaDic;
 
     public bool IsMove { get; set; } = false;
 
     public void Init()
     {
         IsMove = false;
+        _id = 0;
 
         UIManager.SetName("");
         UIManager.SetMSG("Init");
-
-        _sprite1 = GameObject.Find("Chara1").GetComponent<SpriteRenderer>();
-        _sprite1.sprite = null;
-        _sprite2 = GameObject.Find("Chara2").GetComponent<SpriteRenderer>();
-        _sprite2.sprite = null;
     }
 
     public void SetDatas()
     {
-        if (IsMove) Break();
+        if (IsMove) return;
         else IsMove = true;
+        
+        if (_id == _excel.Test.Count)
+        {
+            Debug.Log("EndExcel");
+            Init();
+            return;
+        }
+        _charaDic = new Dictionary<string, string>();
 
         Data data = _excel.Test[_id];
         string name = "Null";
-        foreach (CharaData chara in _chara.CharaData)
-        {
-            if (data.CharaID.ToString("d2") == chara.ID)
-            {
-                name = chara.Name;
-                _sprite1.sprite = chara.FaceID[0];
-                
-                break;
-            }
-        }
-        
+        Sprite sprite = null;
+        int charaID = 0;
+        string getCharaData = data.CharaID.ToString();
+
+        //foreach (CharaData chara in _chara.CharaData)
+        //{
+        //    if (data.CharaID.ToString("d2") == chara.ID)
+        //    {
+        //        name = chara.Name;
+        //        sprite = chara.FaceID[data.SpriteID];
+        //        charaID = int.Parse(chara.ID.ToString());
+        //        break;
+        //    }
+        //}
+
         UIManager.SetName(name);
         UIManager.SetMSG(data.MSG);
+        UIManager.SetSprite(sprite, charaID);
+
+        _id++;
     }
     
-    void Break()
+    public void Break()
     {
-        
+        UIManager.Init();
+
+        if (_id == _excel.Test.Count)
+        {
+            Debug.Log("EndExcel");
+            Init();
+            return;
+        }
     }
 }

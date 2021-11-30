@@ -14,6 +14,7 @@ public class Data
 {
     public int ID;
     public string MSG;
-    public int CharaID;
+    public string CharaID;
+    public bool FadeSync;
 }
 

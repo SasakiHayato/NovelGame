@@ -6,6 +6,8 @@ public class GameManagement : MonoBehaviour
 {
     [SerializeField] UIManager _ui;
     [SerializeField] DataSettings _settings;
+    
+    Coroutine _setCoroutine;
 
     private void Awake()
     {
@@ -18,18 +20,31 @@ public class GameManagement : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && !_settings.IsMove)
         {
-            Debug.Log("‰Ÿ‚µ‚½");
             _settings.SetDatas();
-            StartCoroutine(CurrentSetting());
+            _setCoroutine = StartCoroutine(CurrentSetting());
+        }
+        else if (Input.GetButtonDown("Fire1") && _settings.IsMove)
+        {
+            StopCoroutine(_setCoroutine);
+            _settings.Break();
+            StartCoroutine(IsBreak());
+            //Debug.Log("SetBreak");
         }
     }
 
     IEnumerator CurrentSetting()
     {
         yield return UIManager.IsEnd();
-        Debug.Log("IsSetting UIData");
+        //Debug.Log("IsSetting UIData");
         yield return new WaitUntil(() => Input.GetButtonDown("Fire1"));
-        Debug.Log("IsPressed. GetNextData");
+        //Debug.Log("IsPressed. GetNextData");
+        _settings.IsMove = false;
+    }
+
+    IEnumerator IsBreak()
+    {
+        yield return new WaitUntil(() => Input.GetButtonDown("Fire1"));
+        //Debug.Log("IsPressed. GetNextData");
         _settings.IsMove = false;
     }
 }
