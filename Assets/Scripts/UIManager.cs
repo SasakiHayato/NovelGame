@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
     public static void Init()
     {
         Instance._txt.Break();
-        NewFade.Break();
+        Fade.Break();
     }
 
     public static IEnumerator IsEnd()
@@ -52,20 +52,18 @@ public class UIManager : MonoBehaviour
 
     public static void SetName(string name) => Instance._nameTxt.text = name;
     public static void SetMSG(string msg) => Instance._txt.SetText(msg, Instance._msgTxt);
-    public static void SetSprite(Sprite sprite, int fadeType)
+    public static void SetSprite(Sprite sprite, int fadeType, int postion)
     {
-        if (Instance._spRder1.sprite == null)
+        switch (postion)
         {
-            Instance._spRder1.sprite = sprite;
-            Instance._fade.SetFadeIDToRenderer(fadeType, Instance._spRder1);
-            return;
-        }
-
-        if (Instance._spRder2.sprite == null)
-        {
-            Instance._spRder2.sprite = sprite;
-            Instance._fade.SetFadeIDToRenderer(fadeType, Instance._spRder2);
-            return;
+            case 1:
+                Instance._spRder1.sprite = sprite;
+                Instance._fade.SetFadeIDToRenderer(fadeType, Instance._spRder1);
+                return;
+            case 2:
+                Instance._spRder2.sprite = sprite;
+                Instance._fade.SetFadeIDToRenderer(fadeType, Instance._spRder2);
+                return;
         }
     }
 }

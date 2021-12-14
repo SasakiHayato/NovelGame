@@ -17,6 +17,6 @@ public class Data
     public string CharaID;
     public bool FadeSync;
     public int Talk;
-    public int Postion;
+    public string Postion;
 }
 

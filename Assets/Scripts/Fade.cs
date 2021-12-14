@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewFade : MonoBehaviour
+public class Fade : MonoBehaviour
 {
-    private static NewFade _instance = null;
-    public static NewFade Instance
+    private static Fade _instance = null;
+    public static Fade Instance
     {
         get
         {
-            object instance = FindObjectOfType(typeof(NewFade));
-            if (instance != null) _instance = (NewFade)instance;
+            object instance = FindObjectOfType(typeof(Fade));
+            if (instance != null) _instance = (Fade)instance;
             else
             {
                 GameObject obj = new GameObject("Fade");
-                _instance = obj.AddComponent<NewFade>();
+                _instance = obj.AddComponent<Fade>();
                 obj.hideFlags = HideFlags.HideInHierarchy;
             }
 

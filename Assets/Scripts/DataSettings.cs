@@ -52,6 +52,8 @@ public class DataSettings : MonoBehaviour
                 count++;
             }
         });
+
+        string[] posID = data.Postion.Split(',');
        
         switch (data.Talk)
         {
@@ -70,7 +72,7 @@ public class DataSettings : MonoBehaviour
         UIManager.SetMSG(data.MSG);
         
         for (int i = 0; i < count; i++)
-            UIManager.SetSprite(sprite[i], fadeType[i]);
+            UIManager.SetSprite(sprite[i], fadeType[i], int.Parse(posID[i]));
 
         _id++;
     }
