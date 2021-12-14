@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     SpriteRenderer _spRder1;
     SpriteRenderer _spRder2;
 
+    SpriteRenderer _back;
+
     FadeSetter _fade;
 
     private void Awake()
@@ -36,6 +38,9 @@ public class UIManager : MonoBehaviour
         _spRder1.sprite = null;
         _spRder2 = GameObject.Find("Chara2").GetComponent<SpriteRenderer>();
         _spRder2.sprite = null;
+
+        _back = GameObject.Find("BackGround").GetComponent<SpriteRenderer>();
+        _back.sprite = null;
     }
 
     public static void Init()
@@ -48,6 +53,8 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitUntil(() => Instance._txt.IsEnd);
         Debug.Log("End SetText");
+        yield return new WaitUntil(() => Fade.End());
+        Debug.Log("EndFade");
     }
 
     public static void SetName(string name) => Instance._nameTxt.text = name;
@@ -65,5 +72,11 @@ public class UIManager : MonoBehaviour
                 Instance._fade.SetFadeIDToRenderer(fadeType, Instance._spRder2);
                 return;
         }
+    }
+
+    public static void SetBackGround(Sprite sprite, int fadeType)
+    {
+        Instance._back.sprite = sprite;
+        Instance._fade.SetFadeIDToRenderer(fadeType, Instance._back);
     }
 }

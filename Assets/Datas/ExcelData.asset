@@ -16,30 +16,35 @@ MonoBehaviour:
   - ID: 1
     MSG: "\u3042\u3042\u3042<color=#0073FF>\u3044\u3044\u3044</color>\u3046\u3046\u3046\u3048\u3048\u3048<color=#0073FF>\u304A\u304A\u304A</color>\u304B\u304B\u304B"
     CharaID: '#01,01,00#02,01,00'
-    FadeSync: 1
+    CharaFadeSync: 1
     Talk: 0
     Postion: 1,2
+    BackGroundID: 0,00
   - ID: 2
     MSG: "<b>\u592A\u6587\u5B57</b>\u306E\u8868\u793A"
-    CharaID: '#01,02,00#02,02,00'
-    FadeSync: 1
+    CharaID: '#01,02,03#02,02,03'
+    CharaFadeSync: 0
     Talk: 1
-    Postion: 2,1
+    Postion: 1,2
+    BackGroundID: None
   - ID: 3
     MSG: "<size=50>\u30B5\u30A4\u30BA\u306E\u5909\u66F4</size>\u3092\u8868\u793A"
     CharaID: '#01,02,00#02,02,00'
-    FadeSync: 1
+    CharaFadeSync: 1
     Talk: 2
-    Postion: 
+    Postion: 2,1
+    BackGroundID: 1,01
   - ID: 4
     MSG: "<i>Unity</i>\u30A4\u30BF\u30EA\u30C3\u30AF\u4F53\u306E\u8868\u793A"
     CharaID: '#01,02,00#02,02,00'
-    FadeSync: 1
+    CharaFadeSync: 1
     Talk: 0
-    Postion: 
+    Postion: 1,2
+    BackGroundID: 2,02
   - ID: 5
     MSG: "\u8907\u6570\u30AD\u30E3\u30E9\u306E\u767B\u5834"
     CharaID: 
-    FadeSync: 0
+    CharaFadeSync: 0
     Talk: 0
     Postion: 
+    BackGroundID: 

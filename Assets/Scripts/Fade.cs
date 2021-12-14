@@ -28,11 +28,12 @@ public class Fade : MonoBehaviour
 
     Image _image;
 
-    bool _break;
+    bool _isFade;
+    public static bool End() => Instance._isFade;
 
     public static void SetSngle<T>(T t, float start, float end) where T : Object
     {
-        Instance._break = false;
+        Instance._isFade = false;
 
         Image image = t as Image;
         SpriteRenderer renderer = t as SpriteRenderer;
@@ -42,9 +43,14 @@ public class Fade : MonoBehaviour
         if (renderer != null) Instance.SetSprite(renderer, start, end);
     }
 
+    //public static IEnumerator SetSingleAsync<T>(T t, float start, float end)
+    //{
+
+    //}
+
     public static void Break()
     {
-        Instance._break = true;
+        Instance._isFade = true;
     }
 
     void SetImage(Image image)
@@ -85,7 +91,7 @@ public class Fade : MonoBehaviour
             renderer.color = new Color(color.r, color.g, color.b, rate);
             if (rate == end) isFade = true;
 
-            if (_break)
+            if (_isFade)
             {
                 renderer.color = new Color(color.r, color.g, color.b, end);
                 isFade = true;
@@ -93,5 +99,7 @@ public class Fade : MonoBehaviour
 
             yield return null;
         }
+
+        _isFade = true;
     }
 }

@@ -6,6 +6,7 @@ public class DataSettings : MonoBehaviour
 {
     [SerializeField] ExcelData _excel;
     [SerializeField] CharaDataBase _chara;
+    [SerializeField] BackGroundDataBase _back;
 
     int _id = 0;
     public bool IsMove { get; set; } = false;
@@ -54,6 +55,7 @@ public class DataSettings : MonoBehaviour
         });
 
         string[] posID = data.Postion.Split(',');
+        string[] back = data.BackGroundID.Split(',');
        
         switch (data.Talk)
         {
@@ -70,9 +72,20 @@ public class DataSettings : MonoBehaviour
   
         UIManager.SetName(name);
         UIManager.SetMSG(data.MSG);
+        if (back[0] != "None")
+        {
+            UIManager.SetBackGround(_back.BGDatas[int.Parse(back[0])].Sprite, int.Parse(back[1]));
+        }
         
-        for (int i = 0; i < count; i++)
-            UIManager.SetSprite(sprite[i], fadeType[i], int.Parse(posID[i]));
+        if (data.CharaFadeSync)
+        {
+            for (int i = 0; i < count; i++)
+                UIManager.SetSprite(sprite[i], fadeType[i], int.Parse(posID[i]));
+        }
+        else
+        {
+            Debug.Log("Async");
+        }
 
         _id++;
     }

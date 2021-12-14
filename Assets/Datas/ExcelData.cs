@@ -15,8 +15,9 @@ public class Data
     public int ID;
     public string MSG;
     public string CharaID;
-    public bool FadeSync;
+    public bool CharaFadeSync;
     public int Talk;
     public string Postion;
+    public string BackGroundID;
 }
 

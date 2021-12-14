@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FadeSetter : MonoBehaviour
 {
@@ -12,12 +13,23 @@ public class FadeSetter : MonoBehaviour
                 Fade.SetSngle(getData, 0, 1);
                 break;
             case 1:
-                Fade.SetSngle(getData, 0, 1);
+                Fade.SetSngle(getData, 1, 0);
                 break;
             case 2:
-                //Fade.SpriteCrossFade(getData, 1);
+                Debug.Log("ClossFade");
+                break;
+            case 3:
+                Fade.SetSngle(getData, 1, 1);
                 break;
         }
     }
 
+    public void SetFadeBack(int fadeType, Image image)
+    {
+        switch (fadeType)
+        {
+            default:
+                break;
+        }
+    }
 }
