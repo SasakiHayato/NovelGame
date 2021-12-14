@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using SimpleFade;
-
 public class DataSettings : MonoBehaviour
 {
     [SerializeField] ExcelData _excel;
     [SerializeField] CharaDataBase _chara;
 
     int _id = 0;
-
-    Dictionary<string, string> _charaDic;
-
     public bool IsMove { get; set; } = false;
 
     public void Init()
@@ -35,36 +30,53 @@ public class DataSettings : MonoBehaviour
             Init();
             return;
         }
-        _charaDic = new Dictionary<string, string>();
 
         Data data = _excel.Test[_id];
         string name = "Null";
-        Sprite sprite = null;
-        int charaID = 0;
-        string getCharaData = data.CharaID.ToString();
+        
+        List<string> charaList = new List<string>(data.CharaID.Split('#'));
+        int[] charaID = new int[charaList.Count];
+        Sprite[] sprite = new Sprite[charaList.Count];
+        int[] fadeType = new int[charaList.Count];
 
-        //foreach (CharaData chara in _chara.CharaData)
-        //{
-        //    if (data.CharaID.ToString("d2") == chara.ID)
-        //    {
-        //        name = chara.Name;
-        //        sprite = chara.FaceID[data.SpriteID];
-        //        charaID = int.Parse(chara.ID.ToString());
-        //        break;
-        //    }
-        //}
-
+        int count = 0;
+        charaList.ForEach(c => 
+        {
+            if (c.Length > 0)
+            {
+                string[] get = c.Split(',');
+                charaID[count] = int.Parse(get[0]) - 1;
+                sprite[count] = _chara.CharaData[charaID[count]].FaceID[int.Parse(get[1]) - 1];
+                fadeType[count] = int.Parse(get[2]);
+                
+                count++;
+            }
+        });
+       
+        switch (data.Talk)
+        {
+            case 0:
+                name = _chara.CharaData[charaID[0]].Name;
+                break;
+            case 1:
+                name = _chara.CharaData[charaID[1]].Name;
+                break;
+            case 2:
+                name = "‘Sˆõ";
+                break;
+        }
+  
         UIManager.SetName(name);
         UIManager.SetMSG(data.MSG);
-        UIManager.SetSprite(sprite, charaID);
+        
+        for (int i = 0; i < count; i++)
+            UIManager.SetSprite(sprite[i], fadeType[i]);
 
         _id++;
     }
     
     public void Break()
     {
-        UIManager.Init();
-
         if (_id == _excel.Test.Count)
         {
             Debug.Log("EndExcel");

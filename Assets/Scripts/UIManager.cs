@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-using SimpleFade;
-
 public class UIManager : MonoBehaviour
 {
     [SerializeField] float _txtWaitTime = 0.5f;
@@ -17,11 +15,10 @@ public class UIManager : MonoBehaviour
     Text _msgTxt;
     Text _nameTxt;
 
-    SpriteRenderer _sprite1;
-    SpriteRenderer _sprite2;
+    SpriteRenderer _spRder1;
+    SpriteRenderer _spRder2;
 
-    int _saveCharaID1 = int.MaxValue;
-    int _saveCharaID2 = int.MaxValue;
+    FadeSetter _fade;
 
     private void Awake()
     {
@@ -33,35 +30,42 @@ public class UIManager : MonoBehaviour
         _txt = gameObject.AddComponent<TextCtrl>();
         _txt.WaitTime = _txtWaitTime;
 
-        _sprite1 = GameObject.Find("Chara1").GetComponent<SpriteRenderer>();
-        _sprite1.sprite = null;
-        _sprite2 = GameObject.Find("Chara2").GetComponent<SpriteRenderer>();
-        _sprite2.sprite = null;
+        _fade = gameObject.AddComponent<FadeSetter>();
+
+        _spRder1 = GameObject.Find("Chara1").GetComponent<SpriteRenderer>();
+        _spRder1.sprite = null;
+        _spRder2 = GameObject.Find("Chara2").GetComponent<SpriteRenderer>();
+        _spRder2.sprite = null;
     }
 
     public static void Init()
     {
-        Fade.FadeBreakAll();
         Instance._txt.Break();
+        NewFade.Break();
     }
 
     public static IEnumerator IsEnd()
     {
         yield return new WaitUntil(() => Instance._txt.IsEnd);
-        //Debug.Log("End SetText");
-        yield return new WaitUntil(() => Fade.EndFade);
-        //Debug.Log("End Fade");
+        Debug.Log("End SetText");
     }
 
     public static void SetName(string name) => Instance._nameTxt.text = name;
-    public static void SetMSG(string msg) => Instance._txt.Set(msg, Instance._msgTxt);
-    public static void SetSprite(Sprite sprite, int charaID)
+    public static void SetMSG(string msg) => Instance._txt.SetText(msg, Instance._msgTxt);
+    public static void SetSprite(Sprite sprite, int fadeType)
     {
-        Instance._sprite1.sprite = sprite;
-        if (charaID != Instance._saveCharaID1)
+        if (Instance._spRder1.sprite == null)
         {
-            Instance._saveCharaID1 = charaID;
-            Fade.InSingle(Instance._sprite1, 1);
+            Instance._spRder1.sprite = sprite;
+            Instance._fade.SetFadeIDToRenderer(fadeType, Instance._spRder1);
+            return;
+        }
+
+        if (Instance._spRder2.sprite == null)
+        {
+            Instance._spRder2.sprite = sprite;
+            Instance._fade.SetFadeIDToRenderer(fadeType, Instance._spRder2);
+            return;
         }
     }
 }

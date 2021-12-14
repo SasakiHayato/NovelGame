@@ -31,7 +31,12 @@ public class TextCtrl : MonoBehaviour
         _setTxt.text = _saveMSG;
     }
 
-    public void Set(string msg, Text text)
+    public void SetName()
+    {
+
+    }
+
+    public void SetText(string msg, Text text)
     {
         _saveColor = new string[3];
         IsEnd = false;
@@ -82,7 +87,6 @@ public class TextCtrl : MonoBehaviour
                 _setTxt.text = _setTxt.text.Insert(_setTxt.text.LastIndexOf(_saveColor[2]), insert);
                 _setInsert++;
             }
-            
             
             bool wait = false;
             while (!wait)
