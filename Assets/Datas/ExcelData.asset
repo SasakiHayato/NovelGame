@@ -26,7 +26,7 @@ MonoBehaviour:
     CharaFadeSync: 0
     Talk: 1
     Postion: 1,2
-    BackGroundID: None
+    BackGroundID: None,0
   - ID: 3
     MSG: "<size=50>\u30B5\u30A4\u30BA\u306E\u5909\u66F4</size>\u3092\u8868\u793A"
     CharaID: '#01,02,00#02,02,00'

@@ -26,7 +26,7 @@ public class Fade : MonoBehaviour
     float _start;
     float _end;
 
-    Image _image;
+    Image _fadeImage;
 
     bool _isFade;
     public static bool End() => Instance._isFade;
@@ -39,24 +39,32 @@ public class Fade : MonoBehaviour
         SpriteRenderer renderer = t as SpriteRenderer;
         Material material = t as Material;
 
-        if (image != null) Instance.SetImage(image);
+        if (image != null) Instance.SetImage(image, start, end);
         if (renderer != null) Instance.SetSprite(renderer, start, end);
     }
 
-    //public static IEnumerator SetSingleAsync<T>(T t, float start, float end)
-    //{
-
-    //}
-
-    public static void Break()
+    public static void Break() => Instance._isFade = true;
+    public static Image CreateFadeImage(string findName = "Canvas")
     {
-        Instance._isFade = true;
+        if (Instance._fadeImage == null)
+        {
+            Instance._fadeImage = new GameObject("FadeImage").AddComponent<Image>();
+            GameObject canvas = GameObject.Find(findName);
+            Instance._fadeImage.transform.SetParent(canvas.transform);
+        }
+
+        RectTransform rect = Instance._fadeImage.GetComponent<RectTransform>();
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.offsetMin = Vector2.zero;
+        rect.offsetMax = Vector2.zero;
+
+        return Instance._fadeImage;
     }
 
-    void SetImage(Image image)
+    void SetImage(Image image, float start, float end)
     {
-        _image = image;
-        StartCoroutine(FadeImage());
+        StartCoroutine(FadeImage(image, start, end));
     }
 
     void SetSprite(SpriteRenderer sprite, float strat, float end)
@@ -64,17 +72,17 @@ public class Fade : MonoBehaviour
         StartCoroutine(FadeSprite(sprite, strat, end));
     }
 
-    IEnumerator FadeImage()
+    IEnumerator FadeImage(Image image, float start, float end)
     {
-        Color color = _image.color;
+        Color color = image.color;
         bool isFade = false;
         float time = 0;
         while (!isFade)
         {
             time += Time.deltaTime;
-            float rate = Mathf.Lerp(_start, _end, time);
-            _image.color = new Color(color.r, color.g, color.b, rate);
-            if (rate == _end) isFade = true;
+            float rate = Mathf.Lerp(start, end, time);
+            image.color = new Color(color.r, color.g, color.b, rate);
+            if (rate == end) isFade = true;
             yield return null;
         }
     }

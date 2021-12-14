@@ -23,13 +23,4 @@ public class FadeSetter : MonoBehaviour
                 break;
         }
     }
-
-    public void SetFadeBack(int fadeType, Image image)
-    {
-        switch (fadeType)
-        {
-            default:
-                break;
-        }
-    }
 }
