@@ -8,6 +8,8 @@ public class DataSettings : MonoBehaviour
     [SerializeField] CharaDataBase _chara;
     [SerializeField] BackGroundDataBase _back;
 
+    DataSaver _dataSaver = new DataSaver();
+
     int _id = 0;
     public bool IsMove { get; set; } = false;
 
@@ -38,6 +40,16 @@ public class DataSettings : MonoBehaviour
         if (data.CharaID != "None")
         {
             List<string> charaList = new List<string>(data.CharaID.Split('#'));
+            if (_dataSaver.CharaID == null || data.CharaID != "")
+            {
+                _dataSaver.CharaID = data.CharaID;
+            }
+            else
+            {
+                if (charaList.Count <= 1) 
+                    charaList = new List<string>(_dataSaver.CharaID.Split('#'));
+            }
+
             int[] charaID = new int[charaList.Count];
             Sprite[] sprite = new Sprite[charaList.Count];
             int[] fadeType = new int[charaList.Count];
@@ -57,8 +69,25 @@ public class DataSettings : MonoBehaviour
             });
 
             string[] posID = data.Postion.Split(',');
+            
+            if (_dataSaver.PositionID == null || data.Postion != "")
+                _dataSaver.PositionID = data.Postion;
+            else
+            {
+                if (posID.Length <= 1) posID = _dataSaver.PositionID.Split(',');
+            }
 
-            switch (data.Talk)
+            string talkID = data.Talk;
+            if (_dataSaver.Talk == null || data.Talk != "")
+            {
+                _dataSaver.Talk = data.Talk;
+            }
+            else
+            {
+                if (data.Talk.Length <= 1) talkID = _dataSaver.Talk;
+            }
+
+            switch (int.Parse(talkID))
             {
                 case 0:
                     name = _chara.CharaData[charaID[0]].Name;
@@ -70,7 +99,7 @@ public class DataSettings : MonoBehaviour
                     name = "‘Sˆõ";
                     break;
             }
-
+            
             if (data.CharaFadeSync)
             {
                 for (int i = 0; i < count; i++)
@@ -89,6 +118,16 @@ public class DataSettings : MonoBehaviour
         }
 
         string[] back = data.BackGroundID.Split(',');
+
+        if (_dataSaver.BackGroundID == null || data.BackGroundID != "")
+        {
+            _dataSaver.BackGroundID = data.BackGroundID;
+        }
+        else
+        {
+                back = _dataSaver.BackGroundID.Split(',');
+        }
+
         UIManager.SetName(name);
         UIManager.SetMSG(data.MSG);
         if (back[0] != "None")

@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
     SpriteRenderer[] _spRder1;
     SpriteRenderer[] _spRder2;
 
-    SpriteRenderer _back;
+    SpriteRenderer[] _backs;
 
     FadeSetter _fade;
 
@@ -42,8 +42,9 @@ public class UIManager : MonoBehaviour
         _spRder2[0].sprite = null;
         _fade.AddSpriteRederer(_spRder2[1], 2);
 
-        _back = GameObject.Find("BackGround").GetComponent<SpriteRenderer>();
-        _back.sprite = null;
+        _backs = GameObject.Find("BackGround").GetComponentsInChildren<SpriteRenderer>();
+        _backs[0].sprite = null;
+        _fade.AddSpriteRederer(_backs[1], 0);
     }
 
     public static void Break()
@@ -52,6 +53,7 @@ public class UIManager : MonoBehaviour
         Fade.Break();
         Instance._fade.SaveSpriteRederer(Instance._spRder1[0], 1);
         Instance._fade.SaveSpriteRederer(Instance._spRder2[0], 2);
+        Instance._fade.SaveSpriteRederer(Instance._backs[0], 0);
     }
 
     public static IEnumerator IsEnd()
@@ -61,6 +63,7 @@ public class UIManager : MonoBehaviour
         yield return new WaitUntil(() => Fade.End());
         Instance._fade.SaveSpriteRederer(Instance._spRder1[0], 1);
         Instance._fade.SaveSpriteRederer(Instance._spRder2[0], 2);
+        Instance._fade.SaveSpriteRederer(Instance._backs[0], 0);
         Debug.Log("EndFade");
     }
 
@@ -97,7 +100,7 @@ public class UIManager : MonoBehaviour
 
     public static void SetBackGround(Sprite sprite, int fadeType)
     {
-        Instance._back.sprite = sprite;
-        Instance._fade.SetFadeIDToRenderer(fadeType, Instance._back);
+        Instance._backs[0].sprite = sprite;
+        Instance._fade.SetFadeIDToRenderer(fadeType, Instance._backs[0], 0);
     }
 }
