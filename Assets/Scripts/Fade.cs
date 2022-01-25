@@ -43,6 +43,18 @@ public class Fade : MonoBehaviour
         if (renderer != null) Instance.SetSprite(renderer, start, end);
     }
 
+    public static void SetCloss<T>(T[] t, float start, float end) where T : Object
+    {
+        Instance._isFade = false;
+
+        Image image = t as Image;
+        SpriteRenderer renderer = t as SpriteRenderer;
+        Material material = t as Material;
+
+        if (image != null) Instance.SetImage(image, start, end);
+        if (renderer != null) Instance.SetSprite(renderer, start, end);
+    }
+
     public static void Break() => Instance._isFade = true;
     public static Image CreateFadeImage(string findName = "Canvas")
     {

@@ -18,6 +18,8 @@ public class DataSettings : MonoBehaviour
 
         UIManager.SetName("");
         UIManager.SetMSG("Init");
+        for (int i = 1; i <= 2; i++)
+            UIManager.SetSprite(null, 3, i);
     }
 
     public void SetDatas()
@@ -25,51 +27,68 @@ public class DataSettings : MonoBehaviour
         if (IsMove) return;
         else IsMove = true;
         
-        if (_id == _excel.Test.Count)
+        if (_id == _excel.Test.Count - 1)
         {
-            Debug.Log("EndExcel");
             Init();
             return;
         }
 
         Data data = _excel.Test[_id];
         string name = "Null";
-        
-        List<string> charaList = new List<string>(data.CharaID.Split('#'));
-        int[] charaID = new int[charaList.Count];
-        Sprite[] sprite = new Sprite[charaList.Count];
-        int[] fadeType = new int[charaList.Count];
-
-        int count = 0;
-        charaList.ForEach(c => 
+        if (data.CharaID != "None")
         {
-            if (c.Length > 0)
+            List<string> charaList = new List<string>(data.CharaID.Split('#'));
+            int[] charaID = new int[charaList.Count];
+            Sprite[] sprite = new Sprite[charaList.Count];
+            int[] fadeType = new int[charaList.Count];
+
+            int count = 0;
+            charaList.ForEach(c =>
             {
-                string[] get = c.Split(',');
-                charaID[count] = int.Parse(get[0]) - 1;
-                sprite[count] = _chara.CharaData[charaID[count]].FaceID[int.Parse(get[1]) - 1];
-                fadeType[count] = int.Parse(get[2]);
-                
-                count++;
-            }
-        });
+                if (c.Length > 0)
+                {
+                    string[] get = c.Split(',');
+                    charaID[count] = int.Parse(get[0]) - 1;
+                    sprite[count] = _chara.CharaData[charaID[count]].FaceID[int.Parse(get[1]) - 1];
+                    fadeType[count] = int.Parse(get[2]);
 
-        string[] posID = data.Postion.Split(',');
-        string[] back = data.BackGroundID.Split(',');
-       
-        switch (data.Talk)
-        {
-            case 0:
-                name = _chara.CharaData[charaID[0]].Name;
-                break;
-            case 1:
-                name = _chara.CharaData[charaID[1]].Name;
-                break;
-            case 2:
-                name = "‘Sˆõ";
-                break;
+                    count++;
+                }
+            });
+
+            string[] posID = data.Postion.Split(',');
+
+            switch (data.Talk)
+            {
+                case 0:
+                    name = _chara.CharaData[charaID[0]].Name;
+                    break;
+                case 1:
+                    name = _chara.CharaData[charaID[1]].Name;
+                    break;
+                case 2:
+                    name = "‘Sˆõ";
+                    break;
+            }
+
+            if (data.CharaFadeSync)
+            {
+                for (int i = 0; i < count; i++)
+                    UIManager.SetSprite(sprite[i], fadeType[i], int.Parse(posID[i]));
+            }
+            else
+            {
+                UIManager.SpriteAsyncSetter(sprite, fadeType, posID, count);
+            }
         }
-  
+        else
+        {
+            for (int i = 1; i <= 2; i++)
+                UIManager.SetSprite(null, 3, i);
+            name = "???";
+        }
+
+        string[] back = data.BackGroundID.Split(',');
         UIManager.SetName(name);
         UIManager.SetMSG(data.MSG);
         if (back[0] != "None")
@@ -77,22 +96,12 @@ public class DataSettings : MonoBehaviour
             UIManager.SetBackGround(_back.BGDatas[int.Parse(back[0])].Sprite, int.Parse(back[1]));
         }
         
-        if (data.CharaFadeSync)
-        {
-            for (int i = 0; i < count; i++)
-                UIManager.SetSprite(sprite[i], fadeType[i], int.Parse(posID[i]));
-        }
-        else
-        {
-            Debug.Log("Async");
-        }
-
         _id++;
     }
     
     public void Break()
     {
-        if (_id == _excel.Test.Count)
+        if (_id == _excel.Test.Count - 1)
         {
             Debug.Log("EndExcel");
             Init();

@@ -46,6 +46,6 @@ public class GameManagement : MonoBehaviour
         yield return new WaitUntil(() => Input.GetButtonDown("Fire1"));
         Debug.Log("IsPressed. GetNextData");
         _settings.IsMove = false;
-        UIManager.Init();
+        UIManager.Break();
     }
 }
