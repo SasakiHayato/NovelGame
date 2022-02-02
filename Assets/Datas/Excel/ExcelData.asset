@@ -76,8 +76,58 @@ MonoBehaviour:
     Talk: 
     Postion: 
     BackGroundID: 
-    GetChoicesData: TestChoices,01
+    GetChoicesData: TestChoices
   - ID: 9
+    MSG: END
+    CharaID: 
+    CharaFadeSync: 0
+    Talk: 
+    Postion: 
+    BackGroundID: 
+    GetChoicesData: 
+  Test2:
+  - ID: 1
+    MSG: Select.Test2
+    CharaID: '#01,01,00#02,01,00'
+    CharaFadeSync: 1
+    Talk: 0
+    Postion: 1,2
+    BackGroundID: 0,00
+    GetChoicesData: 
+  - ID: 2
+    MSG: EndingTest2
+    CharaID: 
+    CharaFadeSync: 0
+    Talk: 
+    Postion: 
+    BackGroundID: None,0
+    GetChoicesData: 
+  - ID: 3
+    MSG: END
+    CharaID: 
+    CharaFadeSync: 0
+    Talk: 
+    Postion: 
+    BackGroundID: 
+    GetChoicesData: 
+  Test3:
+  - ID: 1
+    MSG: Select.Test3
+    CharaID: '#01,01,00#02,01,00'
+    CharaFadeSync: 1
+    Talk: 0
+    Postion: 1,2
+    BackGroundID: 0,00
+    GetChoicesData: 
+  - ID: 2
+    MSG: EndingTest3
+    CharaID: 
+    CharaFadeSync: 0
+    Talk: 
+    Postion: 
+    BackGroundID: None,0
+    GetChoicesData: 
+  - ID: 3
     MSG: END
     CharaID: 
     CharaFadeSync: 0

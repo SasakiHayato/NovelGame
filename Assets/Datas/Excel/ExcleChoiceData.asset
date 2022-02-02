@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82af34ddd30e3694b9c59447d678be04, type: 3}
   m_Name: ExcleChoiceData
   m_EditorClassIdentifier: 
-  TestChoices: []
+  TestChoices:
+  - ChoicesCount: 2
+    MSG: NextData.Test2.
+    NextTalkData: Test2
+  - ChoicesCount: 0
+    MSG: NextData.Test3.
+    NextTalkData: Test3

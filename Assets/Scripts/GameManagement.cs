@@ -6,6 +6,7 @@ public class GameManagement : MonoBehaviour
 {
     [SerializeField] UIManager _ui;
     [SerializeField] DataSettings _settings;
+    [SerializeField] TalkName _talkName;
     
     Coroutine _setCoroutine;
     
@@ -15,10 +16,17 @@ public class GameManagement : MonoBehaviour
         Instantiate(_settings.gameObject);
         _settings.SetUp();
         _settings.Init();
+        _settings.TalkName = _talkName;
     }
 
     void Update()
     {
+       
+        if (Input.GetButtonDown("Fire1") && _settings.ChoiceFlag)
+        {
+            return;
+        }
+
         if (Input.GetButtonDown("Fire1") && !_settings.IsMove)
         {
             _settings.SetDatas();

@@ -15,10 +15,15 @@ public class DataSettings : MonoBehaviour
 
     int _id = 0;
     public bool IsMove { get; set; } = false;
+    public bool ChoiceFlag { get; private set; } = false;
+
+    public TalkName TalkName { get; set; } = TalkName.Test;
 
     public void SetUp()
     {
         _choicesSetter = FindObjectOfType<ChoicesSetter>();
+        ChoiceFlag = false;
+        _choicesSetter.SetUp(this);
         _choicesSetter.gameObject.SetActive(false);
     }
 
@@ -38,13 +43,13 @@ public class DataSettings : MonoBehaviour
         if (IsMove) return;
         else IsMove = true;
         
-        if (_id == _excel.Test.Count - 1)
+        if (_id == _excel.GetTalkData(TalkName).Count - 1)
         {
             Init();
             return;
         }
 
-        TalkData data = _excel.Test[_id];
+        TalkData data = _excel.GetTalkData(TalkName)[_id];
 
         if (data.GetChoicesData != "")
         {
@@ -52,7 +57,8 @@ public class DataSettings : MonoBehaviour
             ChoiceDataName choice = (ChoiceDataName)Enum
                 .Parse(typeof(ChoiceDataName), choicesData[0], true);
             _choicesSetter.gameObject.SetActive(true);
-            _choicesSetter.Set(_choiceData.GetChoicesData(choice), int.Parse(choicesData[1]));
+            _choicesSetter.Set(_choiceData.GetChoicesData(choice));
+            ChoiceFlag = true;
             return;
         }
 
@@ -166,5 +172,20 @@ public class DataSettings : MonoBehaviour
             Init();
             return;
         }
+    }
+
+    public void CallExcelData(string name)
+    {
+        TalkName talkName = (TalkName)Enum.Parse(typeof(TalkName), name, true);
+        Init();
+        ChoiceFlag = false;
+        TalkName = talkName;
+        _excel.GetTalkData(talkName);
+        SetDatas();
+        foreach (Transform child in _choicesSetter.gameObject.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        _choicesSetter.gameObject.SetActive(false);
     }
 }

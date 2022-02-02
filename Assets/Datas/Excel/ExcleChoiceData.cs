@@ -18,7 +18,7 @@ public enum ChoiceDataName
 [ExcelAsset]
 public class ExcleChoiceData : ScriptableObject
 {
-    List<ChoicesData> TestChoices = new List<ChoicesData>();
+    public List<ChoicesData> TestChoices = new List<ChoicesData>();
 
     public List<ChoicesData> GetChoicesData(ChoiceDataName dataName)
     {
