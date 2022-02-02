@@ -13,6 +13,7 @@ public class GameManagement : MonoBehaviour
     {
         Instantiate(_ui.gameObject);
         Instantiate(_settings.gameObject);
+        _settings.SetUp();
         _settings.Init();
     }
 

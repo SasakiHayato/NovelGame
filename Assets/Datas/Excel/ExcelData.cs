@@ -6,11 +6,11 @@ using UnityEngine;
 [ExcelAsset]
 public class ExcelData : ScriptableObject
 {
-    public List<Data> Test = new List<Data>(); // Replace 'EntityType' to an actual type that is serializable.
+    public List<TalkData> Test = new List<TalkData>();
 }
 
 [Serializable]
-public class Data
+public class TalkData
 {
     public int ID;
     public string MSG;
@@ -19,5 +19,7 @@ public class Data
     public string Talk;
     public string Postion;
     public string BackGroundID;
+    public string GetChoicesData;
 }
+
 

@@ -1,17 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DataSettings : MonoBehaviour
 {
     [SerializeField] ExcelData _excel;
     [SerializeField] CharaDataBase _chara;
     [SerializeField] BackGroundDataBase _back;
+    [SerializeField] ExcleChoiceData _choiceData;
 
     DataSaver _dataSaver = new DataSaver();
+    ChoicesSetter _choicesSetter = null;
 
     int _id = 0;
     public bool IsMove { get; set; } = false;
+
+    public void SetUp()
+    {
+        _choicesSetter = FindObjectOfType<ChoicesSetter>();
+        _choicesSetter.gameObject.SetActive(false);
+    }
 
     public void Init()
     {
@@ -35,7 +44,18 @@ public class DataSettings : MonoBehaviour
             return;
         }
 
-        Data data = _excel.Test[_id];
+        TalkData data = _excel.Test[_id];
+
+        if (data.GetChoicesData != "")
+        {
+            string[] choicesData = data.GetChoicesData.Split(',');
+            ChoiceDataName choice = (ChoiceDataName)Enum
+                .Parse(typeof(ChoiceDataName), choicesData[0], true);
+            _choicesSetter.gameObject.SetActive(true);
+            _choicesSetter.Set(_choiceData.GetChoicesData(choice), int.Parse(choicesData[1]));
+            return;
+        }
+
         string name = "Null";
         if (data.CharaID != "None")
         {
