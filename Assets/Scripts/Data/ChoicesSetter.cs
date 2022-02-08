@@ -8,8 +8,6 @@ public class ChoicesSetter : MonoBehaviour
     [SerializeField] GameObject _buttonPrefabs;
     DataSettings _settings;
 
-    string _name;
-
     public void SetUp(DataSettings dataSettings)
     {
         _settings = dataSettings;

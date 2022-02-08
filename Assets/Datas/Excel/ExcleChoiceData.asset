@@ -19,3 +19,13 @@ MonoBehaviour:
   - ChoicesCount: 0
     MSG: NextData.Test3.
     NextTalkData: Test3
+  TestChoices2:
+  - ChoicesCount: 3
+    MSG: NextData.Test2.aaaaaa
+    NextTalkData: Test2
+  - ChoicesCount: 0
+    MSG: NextData.Test3.aaaaa
+    NextTalkData: Test3
+  - ChoicesCount: 0
+    MSG: NextData.Test2.bbbbbb
+    NextTalkData: Test2

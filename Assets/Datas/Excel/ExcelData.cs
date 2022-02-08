@@ -40,9 +40,9 @@ public class ExcelData : ScriptableObject
                 return Test2;
             case TalkName.Test3:
                 return Test3;
-        }
 
-        return null;
+            default: return null;
+        }
     }
 }
 

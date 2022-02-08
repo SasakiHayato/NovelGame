@@ -13,12 +13,16 @@ public class ChoicesData
 public enum ChoiceDataName
 {
     TestChoices,
+    TestChoices2,
+
+    None,
 }
 
 [ExcelAsset]
 public class ExcleChoiceData : ScriptableObject
 {
     public List<ChoicesData> TestChoices = new List<ChoicesData>();
+    public List<ChoicesData> TestChoices2 = new List<ChoicesData>();
 
     public List<ChoicesData> GetChoicesData(ChoiceDataName dataName)
     {
@@ -26,8 +30,10 @@ public class ExcleChoiceData : ScriptableObject
         {
             case ChoiceDataName.TestChoices:
                 return TestChoices;
-        }
+            case ChoiceDataName.TestChoices2:
+                return TestChoices2;
 
-        return null;
+            default: return null;
+        }
     }
 }

@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ui: {fileID: 2148584876932926215, guid: 4811bc0e95a302c4caec78a884cec543, type: 3}
   _settings: {fileID: 7568740355118578399, guid: 17f81c1fd34f3f645889ccd4eecee5ca, type: 3}
+  _talkName: 0
+  _choiceName: 1
 --- !u!4 &63815801
 Transform:
   m_ObjectHideFlags: 0

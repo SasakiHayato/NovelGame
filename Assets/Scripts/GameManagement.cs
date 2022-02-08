@@ -7,6 +7,7 @@ public class GameManagement : MonoBehaviour
     [SerializeField] UIManager _ui;
     [SerializeField] DataSettings _settings;
     [SerializeField] TalkName _talkName;
+    [SerializeField] ChoiceDataName _choiceName;
     
     Coroutine _setCoroutine;
     
@@ -17,6 +18,7 @@ public class GameManagement : MonoBehaviour
         _settings.SetUp();
         _settings.Init();
         _settings.TalkName = _talkName;
+        _settings.ChoiceName = _choiceName;
     }
 
     void Update()

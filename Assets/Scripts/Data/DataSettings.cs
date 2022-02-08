@@ -18,6 +18,7 @@ public class DataSettings : MonoBehaviour
     public bool ChoiceFlag { get; private set; } = false;
 
     public TalkName TalkName { get; set; } = TalkName.Test;
+    public ChoiceDataName ChoiceName { get; set; } = ChoiceDataName.None;
 
     public void SetUp()
     {
@@ -57,7 +58,16 @@ public class DataSettings : MonoBehaviour
             ChoiceDataName choice = (ChoiceDataName)Enum
                 .Parse(typeof(ChoiceDataName), choicesData[0], true);
             _choicesSetter.gameObject.SetActive(true);
-            _choicesSetter.Set(_choiceData.GetChoicesData(choice));
+
+            if (ChoiceName == ChoiceDataName.None)
+            {
+                _choicesSetter.Set(_choiceData.GetChoicesData(choice));
+            }
+            else
+            {
+                _choicesSetter.Set(_choiceData.GetChoicesData(ChoiceName));
+            }
+            
             ChoiceFlag = true;
             return;
         }

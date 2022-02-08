@@ -33,7 +33,7 @@ public class TextCtrl : MonoBehaviour
 
     public void SetName()
     {
-
+        
     }
 
     public void SetText(string msg, Text text)

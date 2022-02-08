@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Test:
   - ID: 1
-    MSG: aaa<aaaaaa
+    MSG: "\u30C6\u30AD\u30B9\u30C8\u306E\u8272\u5909\u66F4<color=yellow>\u9EC4\u8272</color>\u3001<color=red>\u8D64\u8272</color>\n<color=green>\u7DD1\u8272</color>."
     CharaID: '#01,01,00#02,01,00'
     CharaFadeSync: 1
     Talk: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
     GetChoicesData: 
   - ID: 2
     MSG: "<b>\u592A\u6587\u5B57</b>\u306E\u8868\u793A"
-    CharaID: 
+    CharaID: '#01,02,02#02,02,02'
     CharaFadeSync: 0
     Talk: 
     Postion: 
@@ -39,7 +39,7 @@ MonoBehaviour:
     GetChoicesData: 
   - ID: 4
     MSG: "<i>Unity</i>\u30A4\u30BF\u30EA\u30C3\u30AF\u4F53\u306E\u8868\u793A"
-    CharaID: '#01,02,00#02,02,00'
+    CharaID: '#01,04,00#02,05,00'
     CharaFadeSync: 1
     Talk: 0
     Postion: 1,2
@@ -55,7 +55,7 @@ MonoBehaviour:
     GetChoicesData: 
   - ID: 6
     MSG: "Chara\u3092\u5909\u3048\u305A\u305D\u306E\u307E\u307E\u8A71\u3059"
-    CharaID: '#01,02,00#02,02,00'
+    CharaID: '#01,08,00#02,06,00'
     CharaFadeSync: 1
     Talk: 0
     Postion: 
